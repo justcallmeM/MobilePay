@@ -6,8 +6,8 @@ namespace Library.Utilities
 {
     public class Discounts : IDiscounts
     {
-        public List<decimal> amountAfterDiscount { get; set; } = new List<decimal>();
-        public void ApplyDiscounts(List<decimal> amountAfterPercentageFee, List<string> merchantNames)
+        public List<decimal> AmountsAfterDiscount { get; set; } = new List<decimal>();
+        public void ApplyDiscounts(List<decimal> amountsAfterPercentageFee, List<string> merchantNames)
         {
             int counter = 0;
             decimal discount = 0;
@@ -27,7 +27,7 @@ namespace Library.Utilities
                         break;
                 }
 
-                amountAfterDiscount.Add(amountAfterPercentageFee[counter] - discount / 100);
+                AmountsAfterDiscount.Add(amountsAfterPercentageFee[counter] - discount / 100);
 
                 counter++;
             }

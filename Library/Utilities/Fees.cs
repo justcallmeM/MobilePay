@@ -6,14 +6,14 @@ namespace Library.Utilities
 {
     public class Fees : IFees
     {
-        public List<decimal> amountAfterPercentageFee { get; set; } = new List<decimal>();
-        public List<decimal> amountAfterInvoiceFee { get; set; } = new List<decimal>();
+        public List<decimal> AmountsAfterPercentageFee { get; set; } = new List<decimal>();
+        public List<decimal> AmountsAfterInvoiceFee { get; set; } = new List<decimal>();
 
-        public void CalculateOnePercentFee(List<decimal> amount)
+        public void CalculateOnePercentFee(List<decimal> amounts)
         {
-            foreach (decimal value in amount)
+            foreach (decimal value in amounts)
             {
-                amountAfterPercentageFee.Add(value / 100);
+                AmountsAfterPercentageFee.Add(value / 100);
             }
         }
 

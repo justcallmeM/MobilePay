@@ -5,9 +5,9 @@ namespace Library.Utilities
 {
     public interface IFees
     {
-        List<decimal> amountAfterPercentageFee { get; set; }
-        List<decimal> amountAfterInvoiceFee { get; set; }
-        void CalculateOnePercentFee(List<decimal> amount);
-        void InvoiceFee(List<string> merchantName, List<DateTime> date, List<decimal> amountAfterDiscount, List<UniqueEntry> uniqueEntries);
+        List<decimal> AmountsAfterPercentageFee { get; set; }
+        List<decimal> AmountsAfterInvoiceFee { get; set; }
+        void CalculateOnePercentFee(List<decimal> amounts);
+        void InvoiceFee(List<string> merchantNames, List<DateTime> dates, List<decimal> amountsAfterDiscount, List<UniqueEntry> uniqueEntries);
     }
 }

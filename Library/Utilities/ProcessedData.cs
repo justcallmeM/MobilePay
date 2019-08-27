@@ -8,11 +8,11 @@ namespace Library.Utilities
 {
     public class ProcessedData : IProcessedData
     {
-        public List<DateTime> date { get; set; } = new List<DateTime>();
-        public List<string> merchantName { get; set; } = new List<string>();
-        public List<decimal> amount { get; set; } = new List<decimal>();
-        private List<string> transactions { get; set; } = new List<string>();
-        public List<UniqueEntry> uniqueEntries { get; set; } = new List<UniqueEntry>();
+        public List<DateTime> Dates { get; set; } = new List<DateTime>();
+        public List<string> MerchantNames { get; set; } = new List<string>();
+        public List<decimal> Amounts { get; set; } = new List<decimal>();
+        private List<string> Transactions { get; set; } = new List<string>();
+        public List<UniqueEntry> UniqueEntries { get; set; } = new List<UniqueEntry>();
 
         public void ProcessingData()
         {
@@ -21,35 +21,35 @@ namespace Library.Utilities
 
             string filePath = @"C:\Users\mindaugas.pikelis\Desktop\SMELIO DEZE\MobilePay\data.txt";
 
-            transactions = File.ReadAllLines(filePath).ToList();
-            transactions.Sort();
+            Transactions = File.ReadAllLines(filePath).ToList();
+            Transactions.Sort();
 
-            foreach (string line in transactions)
+            foreach (string line in Transactions)
             {
                 detailedTransactions.Add(line.Split(" "));
             }
 
             foreach(string[] line in detailedTransactions)
             {
-                date.Add(DateTime.Parse(line[0]));
-                merchantName.Add(line[1]);
+                Dates.Add(DateTime.Parse(line[0]));
+                MerchantNames.Add(line[1]);
                 Decimal.TryParse(line[2], out decimal value);
-                amount.Add(value);
+                Amounts.Add(value);
             }
         }
 
         public void FindingUniqueCombinations()
         {
-            for(int i=0; i<transactions.Count(); i++)
+            for(int i=0; i<Transactions.Count(); i++)
             {
                 UniqueEntry uniqueEntry = new UniqueEntry();
                 bool exists = false;
 
-                uniqueEntries.Add(uniqueEntry);
+                UniqueEntries.Add(uniqueEntry);
 
-                foreach(var entry in uniqueEntries)
+                foreach(var entry in UniqueEntries)
                 {
-                    if(entry.merchantName == merchantName[i] && entry.month == date[i].Month.ToString())
+                    if(entry.MerchantName == MerchantNames[i] && entry.Month == Dates[i].Month.ToString())
                     {
                         exists = true;
                         break;
@@ -58,9 +58,9 @@ namespace Library.Utilities
 
                 if (exists == false)
                 {
-                    uniqueEntries[i].month = date[i].Month.ToString();
-                    uniqueEntries[i].date = date[i];
-                    uniqueEntries[i].merchantName = merchantName[i];
+                    UniqueEntries[i].Month = Dates[i].Month.ToString();
+                    UniqueEntries[i].Date = Dates[i];
+                    UniqueEntries[i].MerchantName = MerchantNames[i];
                 }
             }
         }
@@ -68,8 +68,8 @@ namespace Library.Utilities
 
     public class UniqueEntry
     {
-        public string merchantName { get; set; }
-        public DateTime date { get; set; }
-        public string month { get; set; }
+        public string MerchantName { get; set; }
+        public DateTime Date { get; set; }
+        public string Month { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace Library
 
             for(int i = 0; i < _discounts.amountAfterDiscount.Count; i++)
             {
-                Console.WriteLine("{0:MM/dd/yyyy}" + " " + _processedData.merchantName[i] + " {1:00.00}", _processedData.date[i], _discounts.amountAfterDiscount[i]);
+                Console.WriteLine($"{_processedData.date[i]:MM/dd/yyyy}" + " " + _processedData.merchantName[i] + " " + $"{_discounts.amountAfterDiscount[i]:00.00}");
             }
         }
     }
