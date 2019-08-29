@@ -23,7 +23,7 @@ namespace Library.Utilities
             {
                 foreach (var entry in uniqueEntries)
                 {
-                    if(dates[i] == entry.date && merchantNames[i] == entry.merchantName)
+                    if(dates[i] == entry.Date && merchantNames[i] == entry.MerchantName)
                     {
                         amountsAfterDiscount[i] += 29;
                     }

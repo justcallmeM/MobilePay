@@ -23,15 +23,15 @@ namespace Library
 
             _processedData.FindingUniqueCombinations();
 
-            _fees.CalculateOnePercentFee(_processedData.amount);
+            _fees.CalculateOnePercentFee(_processedData.Amounts);
 
-            _discounts.ApplyDiscounts(_fees.amountAfterPercentageFee, _processedData.merchantName);
+            _discounts.ApplyDiscounts(_fees.AmountsAfterPercentageFee, _processedData.MerchantNames);
 
-            _fees.InvoiceFee(_processedData.merchantName, _processedData.date, _discounts.amountAfterDiscount, _processedData.uniqueEntries);
+            _fees.InvoiceFee(_processedData.MerchantNames, _processedData.Dates, _discounts.AmountsAfterDiscount, _processedData.UniqueEntries);
 
-            for(int i = 0; i < _discounts.amountAfterDiscount.Count; i++)
+            for(int i = 0; i < _discounts.AmountsAfterDiscount.Count; i++)
             {
-                Console.WriteLine($"{_processedData.date[i]:MM/dd/yyyy}" + " " + _processedData.merchantName[i] + " " + $"{_discounts.amountAfterDiscount[i]:00.00}");
+                Console.WriteLine($"{_processedData.Dates[i]:MM/dd/yyyy} " + _processedData.MerchantNames[i] + $" {_discounts.AmountsAfterDiscount[i]:00.00}");
             }
         }
     }

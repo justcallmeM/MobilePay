@@ -6,6 +6,13 @@ using System.Text;
 
 namespace Library.Utilities
 {
+    public class UniqueEntry
+    {
+        public string MerchantName { get; set; }
+        public DateTime Date { get; set; }
+        public string Month { get; set; }
+    }
+
     public class ProcessedData : IProcessedData
     {
         public List<DateTime> Dates { get; set; } = new List<DateTime>();
@@ -64,12 +71,5 @@ namespace Library.Utilities
                 }
             }
         }
-    }
-
-    public class UniqueEntry
-    {
-        public string MerchantName { get; set; }
-        public DateTime Date { get; set; }
-        public string Month { get; set; }
     }
 }
