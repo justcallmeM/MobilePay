@@ -7,7 +7,7 @@ namespace Library.Utilities
     {
         List<decimal> AmountsAfterPercentageFee { get; set; }
         List<decimal> AmountsAfterInvoiceFee { get; set; }
-        void CalculateOnePercentFee(List<decimal> amounts);
-        void InvoiceFee(List<string> merchantNames, List<DateTime> dates, List<decimal> amountsAfterDiscount, List<UniqueEntry> uniqueEntries);
+        void CalculateOnePercentFee(decimal amount);
+        void InvoiceFee(string merchantName, DateTime date, decimal amountAfterDiscount, List<UniqueEntry> uniqueEntries);
     }
 }

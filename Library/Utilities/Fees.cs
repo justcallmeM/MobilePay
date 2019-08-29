@@ -9,24 +9,18 @@ namespace Library.Utilities
         public List<decimal> AmountsAfterPercentageFee { get; set; } = new List<decimal>();
         public List<decimal> AmountsAfterInvoiceFee { get; set; } = new List<decimal>();
 
-        public void CalculateOnePercentFee(List<decimal> amounts)
+        public void CalculateOnePercentFee(decimal amount)
         {
-            foreach (decimal value in amounts)
-            {
-                AmountsAfterPercentageFee.Add(value / 100);
-            }
+            AmountsAfterPercentageFee.Add(amount / 100);
         }
 
-        public void InvoiceFee(List<string> merchantNames, List<DateTime> dates, List<decimal> amountsAfterDiscount, List<UniqueEntry> uniqueEntries)
+        public void InvoiceFee(string merchantName, DateTime date, decimal amountAfterDiscount, List<UniqueEntry> uniqueEntries)
         {
-            for(int i=0; i < merchantNames.Count; i++)
+            foreach (var entry in uniqueEntries)
             {
-                foreach (var entry in uniqueEntries)
+                if(date == entry.Date && merchantName == entry.MerchantName)
                 {
-                    if(dates[i] == entry.Date && merchantNames[i] == entry.MerchantName)
-                    {
-                        amountsAfterDiscount[i] += 29;
-                    }
+                    amountAfterDiscount += 29;
                 }
             }
         }

@@ -7,30 +7,27 @@ namespace Library.Utilities
     public class Discounts : IDiscounts
     {
         public List<decimal> AmountsAfterDiscount { get; set; } = new List<decimal>();
-        public void ApplyDiscounts(List<decimal> amountsAfterPercentageFee, List<string> merchantNames)
+        public void ApplyDiscounts(decimal amountAfterPercentageFee, string merchantName)
         {
             int counter = 0;
             decimal discount = 0;
 
-            foreach (string name in merchantNames)
+            switch (merchantName)
             {
-                switch (name)
-                {
-                    case "TELIA":
-                        discount = 10m;
-                        break;
-                    case "CIRCLE_K":
-                        discount = 20m;
-                        break;
-                    default:
-                        discount = 0m;
-                        break;
-                }
-
-                AmountsAfterDiscount.Add(amountsAfterPercentageFee[counter] - discount / 100);
-
-                counter++;
+                case "TELIA":
+                    discount = 10m;
+                    break;
+                case "CIRCLE_K":
+                    discount = 20m;
+                    break;
+                default:
+                    discount = 0m;
+                    break;
             }
+
+            AmountsAfterDiscount.Add(amountAfterPercentageFee - discount / 100);
+
+            counter++;
         }
     }
 }

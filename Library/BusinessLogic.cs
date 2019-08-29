@@ -21,13 +21,17 @@ namespace Library
         {
             _processedData.ProcessingData();
 
-            _processedData.FindingUniqueCombinations();
+            for(int i = 0; i < _processedData.Transactions.Count; i++)
+            {
+                _processedData.FindingUniqueCombinations(i);
 
-            _fees.CalculateOnePercentFee(_processedData.Amounts);
+                _fees.CalculateOnePercentFee(_processedData.Amounts[i]);
 
-            _discounts.ApplyDiscounts(_fees.AmountsAfterPercentageFee, _processedData.MerchantNames);
+                _discounts.ApplyDiscounts(_fees.AmountsAfterPercentageFee[i], _processedData.MerchantNames[i]);
 
-            _fees.InvoiceFee(_processedData.MerchantNames, _processedData.Dates, _discounts.AmountsAfterDiscount, _processedData.UniqueEntries);
+                _fees.InvoiceFee(_processedData.MerchantNames[i], _processedData.Dates[i], _discounts.AmountsAfterDiscount[i], _processedData.UniqueEntries);
+            }
+
 
             for(int i = 0; i < _discounts.AmountsAfterDiscount.Count; i++)
             {

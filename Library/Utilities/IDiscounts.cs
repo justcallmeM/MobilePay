@@ -5,6 +5,6 @@ namespace Library.Utilities
     public interface IDiscounts
     {
         List<decimal> AmountsAfterDiscount { get; set; }
-        void ApplyDiscounts(List<decimal> amountsAfterPercentageFee, List<string> merchantNames);
+        void ApplyDiscounts(decimal amountAfterPercentageFee, string merchantName);
     }
 }

@@ -18,7 +18,7 @@ namespace Library.Utilities
         public List<DateTime> Dates { get; set; } = new List<DateTime>();
         public List<string> MerchantNames { get; set; } = new List<string>();
         public List<decimal> Amounts { get; set; } = new List<decimal>();
-        private List<string> Transactions { get; set; } = new List<string>();
+        public List<string> Transactions { get; set; } = new List<string>();
         public List<UniqueEntry> UniqueEntries { get; set; } = new List<UniqueEntry>();
 
         public void ProcessingData()
@@ -45,30 +45,27 @@ namespace Library.Utilities
             }
         }
 
-        public void FindingUniqueCombinations()
+        public void FindingUniqueCombinations(int counter)
         {
-            for(int i=0; i<Transactions.Count(); i++)
+            UniqueEntry uniqueEntry = new UniqueEntry();
+            bool exists = false;
+
+            UniqueEntries.Add(uniqueEntry);
+
+            foreach(var entry in UniqueEntries)
             {
-                UniqueEntry uniqueEntry = new UniqueEntry();
-                bool exists = false;
-
-                UniqueEntries.Add(uniqueEntry);
-
-                foreach(var entry in UniqueEntries)
+                if(entry.MerchantName == MerchantNames[counter] && entry.Month == Dates[counter].Month.ToString())
                 {
-                    if(entry.MerchantName == MerchantNames[i] && entry.Month == Dates[i].Month.ToString())
-                    {
-                        exists = true;
-                        break;
-                    }
+                    exists = true;
+                    break;
                 }
+            }
 
-                if (exists == false)
-                {
-                    UniqueEntries[i].Month = Dates[i].Month.ToString();
-                    UniqueEntries[i].Date = Dates[i];
-                    UniqueEntries[i].MerchantName = MerchantNames[i];
-                }
+            if (exists == false)
+            {
+                UniqueEntries[counter].Month = Dates[counter].Month.ToString();
+                UniqueEntries[counter].Date = Dates[counter];
+                UniqueEntries[counter].MerchantName = MerchantNames[counter];
             }
         }
     }
